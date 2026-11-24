@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import rawData from '@/data/ershe 2026-11-20 172553.json'
 import type { ExerciseRecord } from '@/types/exercise'
 import { ExerciseTable } from '@/components/ExerciseTable'
+import { ExerciseProgressionChart } from '@/components/ExerciseProgressionChart'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dumbbell, Calendar, Flame, Trophy, Table as TableIcon } from 'lucide-react'
@@ -108,6 +109,9 @@ export default function App() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Multi-Session Exercise Progression Overlay Chart */}
+        <ExerciseProgressionChart records={records} />
 
         {/* Data Table Section */}
         <Card>
