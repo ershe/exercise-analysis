@@ -1,14 +1,22 @@
 import { useMemo } from 'react'
 import rawData from '@/data/ershe 2026-11-20 172553.json'
 import type { ExerciseRecord } from '@/types/exercise'
+import { normalizeExerciseRecords } from '@/lib/dataNormalization'
 import { ExerciseTable } from '@/components/ExerciseTable'
 import { ExerciseProgressionChart } from '@/components/ExerciseProgressionChart'
+import { AllExercisesHeatmap } from '@/components/AllExercisesHeatmap'
+import { SingleExerciseHeatmap } from '@/components/SingleExerciseHeatmap'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dumbbell, Calendar, Flame, Trophy, Table as TableIcon } from 'lucide-react'
 
 export default function App() {
   const records = rawData as ExerciseRecord[]
+
+  // Compute normalized records adhering to NormalizedSetRecord interface
+  const normalizedRecords = useMemo(() => {
+    return normalizeExerciseRecords(records)
+  }, [records])
 
   // Compute summary stats from actual JSON dataset
   const stats = useMemo(() => {
@@ -112,6 +120,10 @@ export default function App() {
 
         {/* Multi-Session Exercise Progression Overlay Chart */}
         <ExerciseProgressionChart records={records} />
+
+        {/* Apache ECharts Heatmaps */}
+        <AllExercisesHeatmap records={normalizedRecords} />
+        <SingleExerciseHeatmap records={normalizedRecords} />
 
         {/* Data Table Section */}
         <Card>
