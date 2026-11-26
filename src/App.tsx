@@ -6,6 +6,7 @@ import { ExerciseTable } from '@/components/ExerciseTable'
 import { ExerciseProgressionChart } from '@/components/ExerciseProgressionChart'
 import { AllExercisesHeatmap } from '@/components/AllExercisesHeatmap'
 import { SingleExerciseHeatmap } from '@/components/SingleExerciseHeatmap'
+import { WorkoutBubbleChart } from '@/components/WorkoutBubbleChart'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dumbbell, Calendar, Flame, Trophy, Table as TableIcon } from 'lucide-react'
@@ -121,9 +122,10 @@ export default function App() {
         {/* Multi-Session Exercise Progression Overlay Chart */}
         <ExerciseProgressionChart records={records} />
 
-        {/* Apache ECharts Heatmaps */}
+        {/* Apache ECharts Heatmaps & Bubble Chart */}
         <AllExercisesHeatmap records={normalizedRecords} />
         <SingleExerciseHeatmap records={normalizedRecords} />
+        <WorkoutBubbleChart records={normalizedRecords} />
 
         {/* Data Table Section */}
         <Card>
